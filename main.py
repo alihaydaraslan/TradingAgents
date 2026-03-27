@@ -1,3 +1,7 @@
+import sys
+import io
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+
 from tradingagents.graph.trading_graph import TradingAgentsGraph
 from tradingagents.default_config import DEFAULT_CONFIG
 
@@ -8,9 +12,11 @@ load_dotenv()
 
 # Create a custom config
 config = DEFAULT_CONFIG.copy()
-config["deep_think_llm"] = "gpt-5-mini"  # Use a different model
-config["quick_think_llm"] = "gpt-5-mini"  # Use a different model
-config["max_debate_rounds"] = 1  # Increase debate rounds
+config["llm_provider"] = "ollama"
+config["deep_think_llm"] = "qwen3:14b"
+config["quick_think_llm"] = "qwen3:14b"
+config["backend_url"] = "http://localhost:11434/v1"
+config["max_debate_rounds"] = 1
 
 # Configure data vendors (default uses yfinance, no extra API keys needed)
 config["data_vendors"] = {
@@ -24,7 +30,7 @@ config["data_vendors"] = {
 ta = TradingAgentsGraph(debug=True, config=config)
 
 # forward propagate
-_, decision = ta.propagate("NVDA", "2024-05-10")
+_, decision = ta.propagate("MU", "2026-03-27")
 print(decision)
 
 # Memorize mistakes and reflect

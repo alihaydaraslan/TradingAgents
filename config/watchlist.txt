@@ -1,0 +1,29 @@
+# Default watchlist - one ticker per line
+# Lines starting with # are comments
+
+# Big Tech
+AAPL
+MSFT
+NVDA
+GOOGL
+AMZN
+META
+
+# Semiconductors
+AMD
+MU
+AVGO
+
+# High Growth
+TSLA
+PLTR
+SOFI
+DKNG
+COIN
+
+# Cloud/SaaS
+CRM
+NFLX
+SHOP
+NET
+SNOW
